@@ -16,7 +16,7 @@ class SignUp extends Component {
           onOk={this.handleOk}
           onCancel={this.props.modalCloseHandler}
           footer={null}
-          bodyStyle={{ height: '400px' }}
+          bodyStyle={{ height: '500px' }}
         >
           <div>
             {this.context.showRegistration ? (

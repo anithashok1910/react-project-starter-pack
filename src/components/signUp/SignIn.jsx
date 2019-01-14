@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Form, Input, Tooltip, Icon, Checkbox, Button } from 'antd';
+import { ApplicationContext } from '../../context/ApplicationContext';
+import Actions from '../../context/Actions';
 
 class RegistrationForm extends Component {
+  static contextType = ApplicationContext;
   state = {
     confirmDirty: false
   };
@@ -11,10 +14,23 @@ class RegistrationForm extends Component {
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        //Make some API calls to create user and then close modal
+        this.context.dispatch(Actions.IS_USER_LOGGED_IN_UPDATE, {
+          isUserLoggedIn: true
+        });
+        this.context.dispatch(Actions.SHOW_LOGIN_UPDATE, {
+          showLogin: false,
+          showRegistration: false
+        });
       }
     });
   };
 
+  handleLogin = () => {
+    this.context.dispatch(Actions.SHOW_REGISTRATION_UPDATE, {
+      showRegistration: false
+    });
+  };
   handleConfirmBlur = e => {
     const value = e.target.value;
     this.setState({ confirmDirty: this.state.confirmDirty || !!value });
@@ -138,6 +154,11 @@ class RegistrationForm extends Component {
           <Button type="primary" htmlType="submit">
             Register
           </Button>
+          <div className="existing-user-login-button">
+            <Button onClick={() => this.handleLogin()}>
+              Existing User? Log in
+            </Button>
+          </div>
         </Form.Item>
       </Form>
     );

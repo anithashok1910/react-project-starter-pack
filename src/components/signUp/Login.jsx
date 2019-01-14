@@ -76,9 +76,12 @@ class NormalLoginForm extends Component {
             >
               Log in
             </Button>
-            Or{' '}
-            <span onClick={() => this.showRegistrationForm()}>
-              register now!
+            Or Don't have an account?{' '}
+            <span
+              style={{ cursor: 'pointer' }}
+              onClick={() => this.showRegistrationForm()}
+            >
+              Sign Up
             </span>
           </Form.Item>
         </Form>

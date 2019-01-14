@@ -7,3 +7,7 @@
 .user-login .login-form-button {
   width: 100%;
 }
+
+.existing-user-login-button {
+  float: right;
+}
